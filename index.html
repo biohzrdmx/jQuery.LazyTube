@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery LazyTube</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/magnific-popup.css">
+    <style>
+        body { padding-top: 70px; }
+
+        .preview img {
+
+            max-width: 100%;
+            height: auto;
+            -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .embed iframe {
+
+            background: #000;
+            -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container"><!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">jQuery LazyTube</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <!-- <li class="active"><a href="#">Overview</a></li> -->
+            </ul>
+            </div><!-- /.navbar-collapse --></div>
+    </nav>
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>Avoid hanging your client's browsers by loading YouTube videos ONLY when they want to watch them!</p>
+        <p>YouTube is bloated as hell and having to create a Flash instance everytime you want to watch a video isn't an easy task for the browser. Now imagine loading a page with, say 30 videos. Your browser will be on its knees by the 10th one.</p>
+        <p>So let's avoid that task until the user REALLY wants to watch the f***ing video.</p>
+
+        <h3>Credits</h3>
+        <p><strong>Lead coder:</strong> biohzrdmx <a href="http://github.com/biohzrdmx">&lt;github.com/biohzrdmx&gt;</a></p>
+
+        <h3>License</h3>
+        <p>The MIT License (MIT)</p>
+        <p>Copyright (c) 2013 biohzrdmx</p>
+        <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+        <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+        <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+        <h2>Basic usage</h2>
+        <p>Just create a placeholder element and give some <code>data</code> attributes to it. It's that simple.</p>
+        <p>The <code>data-id</code> attribute specifies the video ID: for <code>http://www.youtube.com/watch?v=TVECSYevEz0</code> that would be <code>TVECSYevEz0</code></p>
+        <pre><code>&lt;div data-id=&quot;TVECSYevEz0&quot; class=&quot;demo01&quot;&gt;&lt;/div&gt;</code></pre>
+        <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    jQuery(document).ready(function($) {
+        $('.demo01').lazyTube();
+    });
+&lt;/script&gt;</code></pre>
+        <p>LazyTube automagically fetches the preview image so you don't have to worry on doing it, and the video will be loaded when you click on it:</p>
+        <div data-id="TVECSYevEz0" class="demo01"></div>
+        <br>
+        <p>Very cool!</p>
+
+        <h3>What about specifying the size and other things?</h3>
+        <p>Data attributes are the way to go, just add some <code>width</code> and <code>height</code>:</p>
+        <pre><code>&lt;div data-id=&quot;TVECSYevEz0&quot; data-width=&quot;480&quot; data-height=&quot;320&quot; class=&quot;demo02&quot;&gt;&lt;/div&gt;</code></pre>
+        <div data-id="TVECSYevEz0" data-width="480" data-height="320" class="demo02"></div>
+        <br>
+
+        <h4>Autoplay</h4>
+        <p>You may also specify an <code>autoplay</code> attribute if you want the video to start when the page finishes loading (but please don't do that, it's annoying):</p>
+        <pre><code>&lt;div data-id=&quot;TVECSYevEz0&quot; data-autoplay=&quot;yes&quot; class=&quot;demo02&quot;&gt;&lt;/div&gt;</code></pre>
+
+        <h4>Thumbnail size</h4>
+        <p>And what about specifying the thumbnail size you want to get? That's what the <code>thumbnail</code> attribute is for!</p>
+        <pre><code>&lt;div data-id=&quot;TVECSYevEz0&quot; data-thumbnail=&quot;default&quot; class=&quot;demo03&quot;&gt;&lt;/div&gt;</code></pre>
+        <p>Set <code>data-thumbnail</code> to <code>default</code> and you'll get:</p>
+        <div data-id="TVECSYevEz0" data-thumbnail="default" class="demo03"></div>
+        <br>
+        <p>Set <code>data-thumbnail</code> to <code>mqdefault</code> and you'll get:</p>
+        <div data-id="TVECSYevEz0" data-thumbnail="mqdefault" class="demo03"></div>
+        <br>
+        <p>Set <code>data-thumbnail</code> to <code>hqdefault</code> and you'll get:</p>
+        <div data-id="TVECSYevEz0" data-thumbnail="hqdefault" class="demo03"></div>
+        <br>
+        <p>Set <code>data-thumbnail</code> to <code>sddefault</code> and you'll get:</p>
+        <div data-id="TVECSYevEz0" data-thumbnail="sddefault" class="demo03"></div>
+        <br>
+        <p>Set <code>data-thumbnail</code> to <code>maxresdefault</code> and you'll get:</p>
+        <div data-id="TVECSYevEz0" data-thumbnail="maxresdefault" class="demo03"></div>
+        <br>
+
+        <p>That's simply awesome. But wait!</p>
+
+        <h2>Extending LazyTube</h2>
+        <p>It's also posible to modify the plugin behaviour <em>if you know what you're doing</em>. Yay!</p>
+        <p>The videos can be loaded on, say a <a href="http://dimsemenov.com/plugins/magnific-popup/">Magnific Popup</a> box, and all you have to do is create an special handling function as is shown:</p>
+        <pre><code>&lt;div data-id=&quot;TVECSYevEz0&quot; data-target=&quot;magnificPopup&quot; class=&quot;demo04&quot;&gt;&lt;/div&gt;</code></pre>
+        <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    jQuery(document).ready(function($) {
+        $('.demo04').lazyTube({
+            targetHandlers: {
+                // Create your function here, its name must match the data-target attribute
+                magnificPopup: function(options, params) {
+                    // Here you'll get two parameters, options and params:
+                    //  - options is a hash with the specified options for the .lazyTube call
+                    //  - params is a hash with the extracted data-* attributes (such as width, height, autoplay, etc.)
+                    $.magnificPopup.open({
+                        items: [{
+                            src: 'https://www.youtube.com/watch/?v=' + params.id,
+                            type: 'iframe'
+                        }]
+                    });
+                    // As you can see, we're just using magnificPopup's API to launch the video
+                }
+            }
+        });
+    });
+&lt;/script&gt;</code></pre>
+        <p>Try it!</p>
+        <div data-id="TVECSYevEz0" data-target="magnificPopup" class="demo04"></div>
+
+        <h2>Troubleshooting</h2>
+        <p>This plugin works on IE7+, Firefox and Chrome. Opera should do too, but I don't really care.</p>
+        <p>Also, javascript <strong>is a must</strong>. If the user has javascript disabled, well, this won't work at all.</p>
+        <hr>
+        <p class="text-center text-muted"><small>biohzrdmx</small></p>
+    </div>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="jquery.lazytube.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('.demo01').lazyTube();
+            $('.demo02').lazyTube();
+            $('.demo03').lazyTube();
+            $('.demo04').lazyTube({
+                targetHandlers: {
+                    magnificPopup: function(options, params) {
+                        $.magnificPopup.open({
+                            items: [
+                                {
+                                    src: 'https://www.youtube.com/watch/?v=' + params.id,
+                                    type: 'iframe'
+                                }
+                            ]
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
