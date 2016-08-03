@@ -16,6 +16,7 @@
 				id = el.data('id') || null,
 				thumbnail = el.data('thumbnail') || 'mqdefault',
 				autoplay = el.data('autoplay') || 'no',
+				autoload = el.data('autoload') || false,
 				width = el.data('width') || '320',
 				height = el.data('height') || '240',
 				target = el.data('target') || 'self',
@@ -54,7 +55,7 @@
 				e.preventDefault();
 			});
 			//
-			if (autoplay == 'yes') {
+			if (autoload == 'yes') {
 				$(window).on('load', function() {
 					preview.trigger('click');
 				});
