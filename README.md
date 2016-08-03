@@ -45,11 +45,11 @@ Data attributes are the way to go, just add some `width` and `height`:
 	<div data-id="TVECSYevEz0" data-width="480" data-height="320" class="demo02"></div>
 
 
-#### Autoplay ####
+#### Autoload ####
 
-You may also specify an `autoplay` attribute if you want the video to start when the page finishes loading (but please don't do that, it's annoying):
+You may also specify an `autoload` attribute if you want the video to start when the page finishes loading (but please don't do that, it's annoying):
 
-	<div data-id="TVECSYevEz0" data-autoplay="yes" class="demo02"></div>
+	<div data-id="TVECSYevEz0" data-autoload="yes" class="demo02"></div>
 
 #### Thumbnail size ####
 
