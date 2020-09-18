@@ -32,9 +32,9 @@ The `data-id` attribute specifies the video ID: for `http://www.youtube.com/watc
 <div data-id="TVECSYevEz0" class="demo01"></div>
 
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('.demo01').lazyTube();
-    });
+  jQuery(document).ready(function($) {
+    $('.demo01').lazyTube();
+  });
 </script>
 ```
 
@@ -86,14 +86,14 @@ That contains the id of the video and the name of the thumbnail to use, so we ju
 
 ```javascript
 jQuery(document).ready(function($) {
-	$('.demo05').lazyTube({
-		thumbnailCode: function(el, id, thumbnail) {
-			return '<img src="https://i.vimeocdn.com/video/'+ el.data('thumbnail') +'.jpg" alt="" />';
-		},
-		embedCode: function(el, width, height, id, flags) {
-			return '<iframe src="https://player.vimeo.com/video/'+ id +'?title=0&byline=0&portrait=0" width="'+ width +'" height="'+ height +'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
-		}
-	});
+  $('.demo05').lazyTube({
+    thumbnailCode: function(el, id, thumbnail) {
+      return '<img src="https://i.vimeocdn.com/video/'+ el.data('thumbnail') +'.jpg" alt="" />';
+    },
+    embedCode: function(el, width, height, id, flags) {
+      return '<iframe src="https://player.vimeo.com/video/'+ id +'?title=0&byline=0&portrait=0" width="'+ width +'" height="'+ height +'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+    }
+  });
 });
 ```
 
@@ -109,25 +109,25 @@ The videos can be loaded on, say a [Magnific Popup](http://dimsemenov.com/plugin
 <div data-id="TVECSYevEz0" data-target="magnificPopup" class="demo04"></div>
 
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('.demo04').lazyTube({
-            targetHandlers: {
-                // Create your function here, its name must match the data-target attribute
-                magnificPopup: function(options, params) {
-                    // Here you'll get two parameters, options and params:
-                    //  - options is a hash with the specified options for the .lazyTube call
-                    //  - params is a hash with the extracted data-* attributes (such as width, height, autoplay, etc.)
-                    $.magnificPopup.open({
-                        items: [{
-                            src: 'https://www.youtube.com/watch/?v=' + params.id,
-                            type: 'iframe'
-                        }]
-                    });
-                    // As you can see, we're just using magnificPopup's API to launch the video
-                }
-            }
-        });
+  jQuery(document).ready(function($) {
+    $('.demo04').lazyTube({
+      targetHandlers: {
+        // Create your function here, its name must match the data-target attribute
+        magnificPopup: function(options, params) {
+          // Here you'll get two parameters, options and params:
+          //  - options is a hash with the specified options for the .lazyTube call
+          //  - params is a hash with the extracted data-* attributes (such as width, height, autoplay, etc.)
+          $.magnificPopup.open({
+            items: [{
+              src: 'https://www.youtube.com/watch/?v=' + params.id,
+              type: 'iframe'
+            }]
+          });
+          // As you can see, we're just using magnificPopup's API to launch the video
+        }
+      }
     });
+  });
 </script>
 ```
 
