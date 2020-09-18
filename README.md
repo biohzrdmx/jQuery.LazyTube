@@ -44,19 +44,25 @@ LazyTube automagically fetches the preview image so you don't have to worry on d
 
 Data attributes are the way to go, just add some `width` and `height`:
 
-	<div data-id="TVECSYevEz0" data-width="480" data-height="320" class="demo02"></div>
+```html
+<div data-id="TVECSYevEz0" data-width="480" data-height="320" class="demo02"></div>
+```
 
 #### Autoload ####
 
 You may also specify an `autoload` attribute if you want the video to start when the page finishes loading (but please don't do that, it's annoying):
 
-	<div data-id="TVECSYevEz0" data-autoload="yes" class="demo02"></div>
+```html
+<div data-id="TVECSYevEz0" data-autoload="yes" class="demo02"></div>
+```
 
 #### Thumbnail size ####
 
 And what about specifying the thumbnail size you want to get? That's what the `thumbnail` attribute is for!
 
-	<div data-id="TVECSYevEz0" data-thumbnail="default" class="demo03"></div>
+```html
+<div data-id="TVECSYevEz0" data-thumbnail="default" class="demo03"></div>
+```
 
 Supported values:
 
