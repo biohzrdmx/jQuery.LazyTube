@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>jQuery LazyTube</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/magnific-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/magnific-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css">
     <style>
         body { padding-top: 70px; }
 
@@ -57,7 +58,7 @@
 
         <h3>License</h3>
         <p>The MIT License (MIT)</p>
-        <p>Copyright (c) 2013 biohzrdmx</p>
+        <p>Copyright &copy; 2020 biohzrdmx</p>
         <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
         <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
         <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
@@ -107,6 +108,23 @@
 
         <p>That's simply awesome. But wait!</p>
 
+        <h2>Other services</h2>
+        <p>Now it is also possible to use other video services such as Vimeo, given that you provide the embed and/or thumbnail code, for example:</p>
+        <div data-id="457373826" class="demo05" data-thumbnail="956495787_780x439"></div>
+        <br>
+        <pre><code>&lt;div data-id=&quot;457373826&quot; class=&quot;demo05&quot; data-thumbnail=&quot;956495787_780x439&quot;&gt;&lt;/div&gt;</code></pre>
+        <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    $('.demo05').lazyTube({
+        thumbnailCode: function(el, id, thumbnail) {
+            return '&lt;img src=&quot;https://i.vimeocdn.com/video/'+ el.data('thumbnail') +'.jpg&quot; alt=&quot;&quot; /&gt;';
+        },
+        embedCode: function(el, width, height, id, flags) {
+            return '&lt;iframe src=&quot;https://player.vimeo.com/video/'+ id +'?title=0&amp;byline=0&amp;portrait=0&quot; width=&quot;'+ width +'&quot; height=&quot;'+ height +'&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; fullscreen&quot; allowfullscreen&gt;&lt;/iframe>'
+        }
+    });
+&lt;/script&gt;</code></pre>
+        <p>As you can see, as long as the embed code is known, any service can be supported if you provide the code to generate the required markup.</p>
+
         <h2>Extending LazyTube</h2>
         <p>It's also posible to modify the plugin behaviour <em>if you know what you're doing</em>. Yay!</p>
         <p>The videos can be loaded on, say a <a href="http://dimsemenov.com/plugins/magnific-popup/">Magnific Popup</a> box, and all you have to do is create an special handling function as is shown:</p>
@@ -141,10 +159,11 @@
         <hr>
         <p class="text-center text-muted"><small>biohzrdmx</small></p>
     </div>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="jquery.lazytube.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+    <script type="text/javascript" src="jquery.lazytube.min.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $('.demo01').lazyTube();
@@ -164,6 +183,15 @@
                     }
                 }
             });
+            $('.demo05').lazyTube({
+                thumbnailCode: function(el, id, thumbnail) {
+                    return '<img src="https://i.vimeocdn.com/video/'+ el.data('thumbnail') +'.jpg" alt="" />';
+                },
+                embedCode: function(el, width, height, id, flags) {
+                    return '<iframe src="https://player.vimeo.com/video/'+ id +'?title=0&byline=0&portrait=0" width="'+ width +'" height="'+ height +'" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+                }
+            });
+            hljs.initHighlightingOnLoad();
         });
     </script>
 </body>

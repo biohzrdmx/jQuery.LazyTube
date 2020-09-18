@@ -1,8 +1,8 @@
 /**
  * jQuery.lazyTube
- * On-demand loading for YouTube videos
+ * On-demand loading for YouTube videos, with support for other services by custom callbacks
  * Avoid hanging your client's browsers by loading YouTube videos ONLY when they want to watch them
- * @version  1.0
+ * @version  1.1
  * @author   biohzrdmx <github.com/biohzrdmx>
  * @requires jQuery 1.8+
  * @license  MIT
@@ -17,26 +17,25 @@
 				thumbnail = el.data('thumbnail') || 'mqdefault',
 				autoplay = el.data('autoplay') || 'no',
 				autoload = el.data('autoload') || false,
-				width = el.data('width') || '320',
-				height = el.data('height') || '240',
+				width = el.data('width') || '480',
+				height = el.data('height') || '270',
 				target = el.data('target') || 'self',
+				flags = el.data('flags') || null,
 				preview = el.children('.preview');
 			//
 			if (preview.length == 0) {
 				preview = $('<a href="#" class="preview"></a>');
 				el.prepend(preview);
 			}
-			//
-			preview.append('<img src="//img.youtube.com/vi/' + id + '/' + thumbnail + '.jpg" alt="" />');
+			var previewMarkup = opts.thumbnailCode(el, id, thumbnail);
+			preview.append(previewMarkup);
 			//
 			preview.on('click', function(e) {
 				switch (target) {
 					case 'self':
-						var embedMarkup = opts.embedCode,
-							embedElement = null,
-							flags = 'rel=0&wmode=transparent';
-						flags += autoplay == 'yes' ? '&autoplay=1' : '';
-						embedMarkup = embedMarkup.replace('{width}', width).replace('{height}', height).replace('{id}', id).replace('{flags}', flags);
+						var flags = flags || 'rel=0&wmode=transparent' + (autoplay == 'yes' ? '&autoplay=1' : ''),
+							embedMarkup = opts.embedCode(el, width, height, id, flags),
+							embedElement = null;
 						embedElement = $(embedMarkup);
 						preview.hide();
 						el.append(embedElement);
@@ -67,7 +66,12 @@
 	$.lazyTube = {
 		defaults: {
 			targetHandlers: {},
-			embedCode: '<div class="embed"><iframe width="{width}" height="{height}" src="//www.youtube-nocookie.com/embed/{id}?{flags}" frameborder="0" allowfullscreen></iframe></div>'
+			thumbnailCode: function(el, id, thumbnail) {
+				return '<img src="https://img.youtube.com/vi/'+ id +'/'+ thumbnail +'.jpg" alt="" />';
+			},
+			embedCode: function(el, width, height, id, flags) {
+				return '<div class="embed"><iframe width="'+ width +'" height="'+ height +'" src="https://www.youtube-nocookie.com/embed/'+ id +'?'+ flags +'" frameborder="0" allowfullscreen></iframe></div>';
+			}
 		}
 	};
 })(jQuery);
